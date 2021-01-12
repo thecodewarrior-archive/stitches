@@ -25,6 +25,12 @@
         <a href="#%40set">@set</a>
       </div>
       <div class="heading h3">
+        <a href="#%40islimitable">@isLimitable</a>
+      </div>
+      <div class="heading h3">
+        <a href="#%40limitrows">@limitRows</a>
+      </div>
+      <div class="heading h3">
         <a href="#%40getdimensions">@getDimensions</a>
       </div>
       <div class="heading h3">
@@ -139,6 +145,73 @@
             <span class="kd">var</span> <span class="nx">Manager</span> <span class="o">=</span> <span class="nx">managers</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span> <span class="o">||</span> <span class="nx">managers</span><span class="p">.</span><span class="nx">compact</span><span class="p">;</span>
 
             <span class="k">this</span><span class="p">.</span><span class="nx">manager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Manager</span><span class="p">();</span>
+        <span class="p">},</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="%40islimitable">
+  <h3>
+    <a href="#%40islimitable" name="%40islimitable" class="pilcrow">&#182;</a>
+    @isLimitable
+  </h3>
+</div>
+
+
+<p>Returns whether working layout manager is limitable</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">null
+</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">isLimitable</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">manager</span><span class="p">.</span><span class="nx">isLimitable</span><span class="p">();</span>
+        <span class="p">},</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="%40limitrows">
+  <h3>
+    <a href="#%40limitrows" name="%40limitrows" class="pilcrow">&#182;</a>
+    @limitRows
+  </h3>
+</div>
+
+
+<p>Set the working layout manager instance by type</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">limit</span>
+      <span class="dox_type">number</span>
+      <span>value for the limit </span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">setLimit</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">limit</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">manager</span><span class="p">.</span><span class="nx">isLimitable</span><span class="p">())</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">manager</span><span class="p">.</span><span class="nx">setLimit</span><span class="p">(</span><span class="nx">limit</span><span class="p">);</span>
+            <span class="p">}</span>
         <span class="p">},</span>
 
 
@@ -322,6 +395,10 @@ Triggers a non-fatal error if anything fails</p>
       <span class="dox_tag_name">options.sprites</span>
       <span class="dox_type">array</span>
       <span>A list of sprites</span>
+    </div>
+    <div class="dox_tag_title">param{object}</div>
+    <div class="dox_tag_detail">
+      <span>options.dimensions Working width and height</span>
     </div>
     <div class="dox_tag_title">Returns</div>
     <div class="dox_tag_detail">

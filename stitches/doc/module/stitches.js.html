@@ -67,6 +67,9 @@
         <a href="#%40hideoverlay">@hideOverlay</a>
       </div>
       <div class="heading h3">
+        <a href="#%40updateprops">@updateProps</a>
+      </div>
+      <div class="heading h3">
         <a href="#%40openabout">@openAbout</a>
       </div>
       <div class="heading h3">
@@ -196,6 +199,9 @@ used in a DOM ready callback</p>
   <div class="body">
   </div>
   <div class="details">
+    <div class="dox_tag_title">constructor</div>
+    <div class="dox_tag_detail">
+    </div>
     <div class="dox_tag_title">Params</div>
     <div class="dox_tag_detail">
       <span class="dox_tag_name">element</span>
@@ -456,6 +462,7 @@ and stylesheets</p>
             <span class="p">});</span>
             <span class="nx">layoutManager</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">layout</span><span class="p">);</span>
             <span class="nx">stylesheetManager</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">stylesheet</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">updateProps</span><span class="p">();</span>
         <span class="p">},</span>
 
 
@@ -682,10 +689,18 @@ and stylesheets</p>
                         <span class="s2">&quot;change&quot;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
                             <span class="kd">var</span> <span class="nx">$checked</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$element</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;input[name=layout]:checked&quot;</span><span class="p">);</span>
                             <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">$checked</span><span class="p">.</span><span class="nx">val</span><span class="p">();</span>
-
                             <span class="k">this</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">layout</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
                             <span class="nx">layoutManager</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
-
+                            <span class="nx">self</span><span class="p">.</span><span class="nx">updateSettings</span><span class="p">();</span>
+                            <span class="nx">layoutManager</span><span class="p">.</span><span class="nx">setLimit</span><span class="p">(</span>
+                                <span class="k">this</span><span class="p">.</span><span class="nx">$element</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;input[name=limit]&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span>
+                    <span class="nx">limit</span><span class="o">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;change&quot;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+                            <span class="nx">self</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">limit</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+                            <span class="nx">layoutManager</span><span class="p">.</span><span class="nx">setLimit</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
                             <span class="nx">self</span><span class="p">.</span><span class="nx">updateSettings</span><span class="p">();</span>
                         <span class="p">}</span>
                     <span class="p">},</span>
@@ -852,6 +867,7 @@ with store.js</p>
         <td class="code highlight"><div class="highlight"><pre>
             <span class="k">this</span><span class="p">.</span><span class="nx">showOverlay</span><span class="p">();</span>
             <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">updateProps</span><span class="p">();</span>
 
 
 </pre></div>
@@ -936,6 +952,41 @@ with store.js</p>
         <td class="code highlight"><div class="highlight"><pre>
         <span class="nx">hideOverlay</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">this</span><span class="p">.</span><span class="nx">$overlay</span><span class="p">.</span><span class="nx">fadeOut</span><span class="p">(</span><span class="s2">&quot;fast&quot;</span><span class="p">);</span>
+        <span class="p">},</span>
+        
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="%40updateprops">
+  <h3>
+    <a href="#%40updateprops" name="%40updateprops" class="pilcrow">&#182;</a>
+    @updateProps
+  </h3>
+</div>
+
+
+<p>Update Dependent Properties</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">e</span>
+      <span class="dox_type">event</span>
+      <span>The event object</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">updateProps</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">$element</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;input[name=limit]&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="o">!</span><span class="nx">layoutManager</span><span class="p">.</span><span class="nx">isLimitable</span><span class="p">());</span>
         <span class="p">},</span>
 
 
@@ -1173,7 +1224,7 @@ with the current settings</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-29" id="section-29">&#182;</a>
+  <a class="pilcrow" href="#section-30" id="section-30">&#182;</a>
 </div>
 <p>go back to the first tab</p>
         </td>
@@ -1187,7 +1238,7 @@ with the current settings</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-30" id="section-30">&#182;</a>
+  <a class="pilcrow" href="#section-31" id="section-31">&#182;</a>
 </div>
 <p>clear out the import field</p>
         </td>
@@ -1453,7 +1504,7 @@ state</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-37" id="section-37">&#182;</a>
+  <a class="pilcrow" href="#section-38" id="section-38">&#182;</a>
 </div>
 <p>buttons</p>
         </td>
@@ -1520,7 +1571,7 @@ state</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-39" id="section-39">&#182;</a>
+  <a class="pilcrow" href="#section-40" id="section-40">&#182;</a>
 </div>
 <p>buttons</p>
         </td>
@@ -1541,7 +1592,7 @@ state</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-40" id="section-40">&#182;</a>
+  <a class="pilcrow" href="#section-41" id="section-41">&#182;</a>
 </div>
 <p>tooltips</p>
         </td>
@@ -1666,7 +1717,7 @@ and stylesheet manager. This is the final product</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-43" id="section-43">&#182;</a>
+  <a class="pilcrow" href="#section-44" id="section-44">&#182;</a>
 </div>
 <p>if uri is not checked, we need to generate another
 stylesheet with the data uri included for the
@@ -1788,7 +1839,7 @@ download example rendering</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-47" id="section-47">&#182;</a>
+  <a class="pilcrow" href="#section-48" id="section-48">&#182;</a>
 </div>
 <p>make sure any new defaults are included</p>
         </td>
@@ -1802,12 +1853,13 @@ download example rendering</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-48" id="section-48">&#182;</a>
+  <a class="pilcrow" href="#section-49" id="section-49">&#182;</a>
 </div>
 <p>update settings</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
             <span class="nx">layoutManager</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">layout</span><span class="p">);</span>
+            <span class="nx">layoutManager</span><span class="p">.</span><span class="nx">setLimit</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">limit</span><span class="p">);</span>
             <span class="nx">stylesheetManager</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">stylesheet</span><span class="p">);</span>
             <span class="k">this</span><span class="p">.</span><span class="nx">updateSettings</span><span class="p">();</span>
 
@@ -1818,7 +1870,7 @@ download example rendering</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-49" id="section-49">&#182;</a>
+  <a class="pilcrow" href="#section-50" id="section-50">&#182;</a>
 </div>
 <p>update canvas</p>
         </td>
@@ -1836,7 +1888,7 @@ download example rendering</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-50" id="section-50">&#182;</a>
+  <a class="pilcrow" href="#section-51" id="section-51">&#182;</a>
 </div>
 <p>ok</p>
         </td>
